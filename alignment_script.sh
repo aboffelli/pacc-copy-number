@@ -6,6 +6,7 @@
 #SBATCH -t 7-00:00:00
 #SBATCH -J alignment
 #SBATCH --mail-user=arthur.boffelli_castro@med.lu.se
+#SBATCH --mail-type=ALL
 
 module load bioinfo-tools
 module load bwa
