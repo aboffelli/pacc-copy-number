@@ -20,15 +20,13 @@ for file in $RawData/controls/*.fastq.gz; do
     sample=${file##*/}
     bwa mem -t 30 $RawData/RefGenome/hg38_sorted_new.fa.gz \
     ${file} | \
-    samtools sort -@30 -o $Running/bam/controls/${sample/_S*_R1_001.fastq.gz/.bam} 2>&1 | \
-    tee ${sample/_S*_R1_001.fastq.gz/.log}
+    samtools sort -@30 -o $Running/bam/controls/${sample/_S*_R1_001.fastq.gz/.bam} 2> ${sample/_S*_R1_001.fastq.gz/.log}
     done
 for file in $RawData/progeny/*.fastq.gz; do 
-    sample=${file*/##}
+    sample=${file##*/}
     bwa mem -t 30 $RawData/RefGenome/hg38_sorted_new.fa.gz \
     ${file} | \
-    samtools sort -@30 -o $Running/bam/progeny/${sample/_S*_R1_001.fastq.gz/.bam} 2>&1 | \
-    tee ${sample/_S*_R1_001.fastq.gz/.log}
+    samtools sort -@30 -o $Running/bam/progeny/${sample/_S*_R1_001.fastq.gz/.bam} 2> ${sample/_S*_R1_001.fastq.gz/.log}
     done
 
 
