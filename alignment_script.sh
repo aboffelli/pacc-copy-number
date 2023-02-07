@@ -17,7 +17,7 @@ module load samtools
 export RawData="/home/boffelli/mystorage/private/Data"
 export Running="/home/boffelli/mystorage/private/running"
 for file in $RawData/controls/*.fastq.gz; do 
-    sample=${file*/##}
+    sample=${file##*/}
     bwa mem -t 30 $RawData/RefGenome/hg38_sorted_new.fa.gz \
     ${file} | \
     samtools sort -@30 -o $Running/bam/controls/${sample/_S*_R1_001.fastq.gz/.bam} 2>&1 | \
