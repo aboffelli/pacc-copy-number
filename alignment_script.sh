@@ -16,19 +16,19 @@ module load samtools
 # BWA mem alignment.
 export RawData="/home/boffelli/mystorage/private/Data"
 export Running="/home/boffelli/mystorage/private/running"
-#for file in $RawData/controls/*.fastq.gz; do 
+#for file in $RawData/fastq/controls/*.fastq.gz; do 
 #    sample=${file##*/}
 #    bwa mem -t 30 $RawData/RefGenome/hg38_sorted_new.fa.gz \
 #    ${file} | \
 #    samtools sort -@30 -o $Running/bam/controls/${sample/_S*_R1_001.fastq.gz/.bam}
 #    done
-#for file in $RawData/progeny/*.fastq.gz; do 
+#for file in $RawData/fastq/progeny/*.fastq.gz; do 
 #    sample=${file##*/}
 #    bwa mem -t 30 $RawData/RefGenome/hg38_sorted_new.fa.gz \
 #    ${file} | \
 #    samtools sort -@30 -o $Running/bam/progeny/${sample/_S*_R1_001.fastq.gz/.bam}
 #    done
-for file in $RawData/paccs/*.fastq.gz; do 
+for file in $RawData/fastq/paccs/*.fastq.gz; do 
     sample=${file##*/}
     bwa mem -t 30 $RawData/RefGenome/hg38_sorted_new.fa.gz \
     ${file} | \
