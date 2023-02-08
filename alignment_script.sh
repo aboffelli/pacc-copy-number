@@ -20,19 +20,19 @@ export Running="/home/boffelli/mystorage/private/running"
 #    sample=${file##*/}
 #    bwa mem -t 30 $RawData/RefGenome/hg38_sorted_new.fa.gz \
 #    ${file} | \
-#    samtools sort -@30 -o $Running/bam/controls/${sample/_S*_R1_001.fastq.gz/.bam}
+#    samtools sort -@30 -o $RawData/bam/controls/${sample/_S*_R1_001.fastq.gz/.bam}
 #    done
 #for file in $RawData/fastq/progeny/*.fastq.gz; do 
 #    sample=${file##*/}
 #    bwa mem -t 30 $RawData/RefGenome/hg38_sorted_new.fa.gz \
 #    ${file} | \
-#    samtools sort -@30 -o $Running/bam/progeny/${sample/_S*_R1_001.fastq.gz/.bam}
+#    samtools sort -@30 -o $RawData/bam/progeny/${sample/_S*_R1_001.fastq.gz/.bam}
 #    done
 for file in $RawData/fastq/paccs/*.fastq.gz; do 
     sample=${file##*/}
     bwa mem -t 30 $RawData/RefGenome/hg38_sorted_new.fa.gz \
     ${file} | \
-    samtools sort -@30 -o $Running/bam/paccs/${sample/_S*_R1_001.fastq.gz/.bam}
+    samtools sort -@30 -o $RawData/bam/paccs/${sample/_S*_R1_001.fastq.gz/.bam}
     done
 
 
