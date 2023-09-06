@@ -1,25 +1,18 @@
 #!/bin/bash -l
 
-#SBATCH -A snic2022-22-1233
-#SBATCH -p core -n 15 
-#SBATCH -J chisel_progeny
-#SBATCH -t 06:00:00
-#SBATCH --mail-user=arthur.boffelli_castro@med.lu.se
-#SBATCH --mail-type=ALL
+export REF="/home/boffelli/raw/RefGenome/hg19.fa"
 
-module load conda
-conda activate chisel
-
-export RawData="/home/boffelli/mystorage/Data"
-export Running="/home/boffelli/mystorage/running"
-export REF="$RawData/RefGenome/hg19.fa"
-
+declare -i chr1=4
+declare -i chr2=4
+declare -i chr19=4
+declare -i chr23=2
 
 # Run chisel
-
-chisel_nonormal --chromosomes "chr1 chr2 chr3 chr4 chr5 chr6 chr7 chr8 chr9 chr10 chr11 chr12 chr13 chr14 chr15 chr16 chr17 chr18 chr19 chr20 chr21 chr22 chr23" \
-	--reference $REF\
-	--minreads 30000 --size 10Mb --blocksize 0 --seed 12 \
-	--simcov 0.02 --nophasecorr --missingsnps 5,5 --maxploidy 5\
-	--tumor $Running/progeny.barcodedcells.q20.bam --listphased $Runnning/calls_phased_hg19.bed 
-
+for dir in {chr1,chr2,chr19,chr23}; do
+cd $dir
+chisel_nonormal --chromosomes "chr1" \
+        --reference $REF\
+        --minreads 30000 --size 10Mb --seed 12 --simcov 0.02 --maxploidy 4\
+        --tumor ../parent.barcoded.q20.bam  --listphased ../calls_phased_hg19.bed 
+cd ..
+done
